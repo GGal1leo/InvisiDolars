@@ -9,7 +9,6 @@ def encode(message):
     for char in message:
         # get binary representation of the character
         binary = str(bin(ord(char))[2:])
-        # print(binary)
         # if it's a 0, convert it to a zero width space
         for i in binary:
             if i == '0':
@@ -18,6 +17,8 @@ def encode(message):
                 secret += '\u200c'
         secret += '$'
     return secret + '$'
+
+
 def decode(message):
     clear = ''
     # remove the first and last character, which are dollar signs
@@ -28,7 +29,6 @@ def decode(message):
     characters.pop()
     while '' in characters:
         characters.remove('')
-    # print(characters)
     # for each character, convert it to a binary representation
     for char in characters:
         binary = ''
@@ -37,10 +37,10 @@ def decode(message):
                 binary += '0'
             else:
                 binary += '1'
-        # print(binary)
         # convert the binary representation to a character
         clear += chr(int(binary, 2))
     return clear
+
 
 def wrapEncode(message):
     # wrap the encoded message in another message
@@ -57,13 +57,11 @@ def wrapEncode(message):
     # remove last 2 elements, which are an empty string
     bits.pop()
     bits.pop()
-    # print(len(bits))
-    # print(bits)
     for i in range(len(bits)):
-        # print(wrapper[i])
         wrapped += wrapper[i] + bits[i]
     return wrapped + wrapper[len(wrapped.replace('\u200b', '').replace('\u200c', '')):] 
-    
+
+
 def wrapDecode(message):
     pog = ''
     temp = []
@@ -77,7 +75,6 @@ def wrapDecode(message):
     # remove empty elements
     while '' in temp:
         temp.remove('')
-    # temp.pop(0)
     dec = ''
     for char in temp:
         binary = ''
@@ -89,7 +86,6 @@ def wrapDecode(message):
         # convert the binary representation to a character
         dec += chr(int(binary, 2))
     return dec
-
     
 
 choice = input('Would you like to encode or decode a message? (e/d): ')
