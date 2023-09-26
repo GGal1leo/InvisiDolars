@@ -26,6 +26,8 @@ def decode(message):
     characters = message.split('$')
     # remove the last character, which is an empty string
     characters.pop()
+    while '' in characters:
+        characters.remove('')
     # print(characters)
     # for each character, convert it to a binary representation
     for char in characters:
