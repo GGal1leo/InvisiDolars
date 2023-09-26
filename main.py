@@ -19,7 +19,7 @@ def encode(message):
         secret += '$'
     return secret + '$'
 def decode(message):
-    clear = ""
+    clear = ''
     # remove the first and last character, which are dollar signs
     message = message[1:-1]
     # split the message into the individual characters
@@ -65,7 +65,7 @@ def wrapEncode(message):
     return wrapped + wrapper[len(wrapped.replace('\u200b', '').replace('\u200c', '')):] 
     
 def wrapDecode(message):
-    pog = ""
+    pog = ''
     temp = []
     # group the zero width characters each group being the one separated by a non zero width character
     for i in range(len(message)):
